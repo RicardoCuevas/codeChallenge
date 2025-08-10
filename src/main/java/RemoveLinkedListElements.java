@@ -1,0 +1,69 @@
+//203. Remove Linked List Elements
+//https://leetcode.com/problems/remove-linked-list-elements/
+public class RemoveLinkedListElements {
+
+    public static void main(String[] args) {
+
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(6);
+        head.next.next.next = new ListNode(3);
+        head.next.next.next.next = new ListNode(4);
+        head.next.next.next.next.next = new ListNode(5);
+        head.next.next.next.next.next.next = new ListNode(6);
+
+        int val = 6;
+        printList(removeElements(head, val));
+    }
+
+    public static ListNode removeElements(ListNode head, int val){
+        ListNode dummyHead = head;
+        ListNode current = dummyHead;
+
+        while (current.next != null){
+            if(current.next.val == val){
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+        return dummyHead.next;
+    }
+
+    static void printList(ListNode head) {
+        ListNode current = head;
+        while (current != null) {
+            System.out.print(current.val);
+            if (current.next != null) System.out.print(" -> ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+}
+
+/**
+ * Given the head of a linked list and an integer val, remove all the nodes of the linked list that has Node.val == val, and return the new head.
+ *
+ *
+ *
+ * Example 1:
+ *
+ *
+ * Input: head = [1,2,6,3,4,5,6], val = 6
+ * Output: [1,2,3,4,5]
+ * Example 2:
+ *
+ * Input: head = [], val = 1
+ * Output: []
+ * Example 3:
+ *
+ * Input: head = [7,7,7,7], val = 7
+ * Output: []
+ *
+ *
+ * Constraints:
+ *
+ * The number of nodes in the list is in the range [0, 104].
+ * 1 <= Node.val <= 50
+ * 0 <= val <= 50
+ */
