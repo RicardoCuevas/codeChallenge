@@ -8,8 +8,9 @@ public class ContainsDuplicate {
 
     public static void main(String[] args) {
         int[] nums = {1,2,3,1};
-        //System.out.println(containsDuplicate(nums));
+        System.out.println(containsDuplicate(nums));
         System.out.println(containsDuplicateFI(nums));
+        System.out.println(containsDuplicateOptimalSolution(nums));
     }
 
     public static boolean containsDuplicate(int[] nums){
@@ -17,6 +18,14 @@ public class ContainsDuplicate {
         for(int num : nums) {
             if(numSet.contains(num)) return true;
             numSet.add(num);
+        }
+        return false;
+    }
+
+    public static boolean containsDuplicateOptimalSolution(int[] nums){
+        Arrays.sort(nums);
+        for (int index =0; index<nums.length-1; index++) {
+            if (nums[index] != nums[index+1])  return true;
         }
         return false;
     }
