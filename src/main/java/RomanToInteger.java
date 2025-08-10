@@ -3,6 +3,43 @@ import java.util.Map;
 
 //https://leetcode.com/problems/roman-to-integer/
 
+public class RomanToInteger {
+
+    public static void main(String[] args) {
+        System.out.println(romanToInt("III")); // Output: 3
+        System.out.println(romanToInt("IV")); // Output: 4
+        System.out.println(romanToInt("IX")); // Output: 9
+        System.out.println(romanToInt("LVIII")); // Output: 58
+        System.out.println(romanToInt("MCMXCIV")); // Output: 1994
+    }
+
+    public static int romanToInt(String s){
+        Map<Character, Integer> romanMap = new HashMap<>();
+        romanMap.put('I', 1);
+        romanMap.put('V', 5);
+        romanMap.put('X', 10);
+        romanMap.put('L', 50);
+        romanMap.put('C', 100);
+        romanMap.put('D', 500);
+        romanMap.put('M', 1000);
+
+        char[] chars = s.toCharArray();
+        int result = 0;
+        int left, right;
+        for(left=0, right=1; right<chars.length; left++, right++){
+            if(romanMap.get(chars[left])>=romanMap.get(chars[right])){
+                result += romanMap.get(chars[left]);
+            } else {
+                result -= romanMap.get(chars[left]);
+            }
+        }
+        return result+romanMap.get(chars[left]);
+    }
+
+}
+
+
+
 /**
  * Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
  *
@@ -49,38 +86,3 @@ import java.util.Map;
  * It is guaranteed that s is a valid roman numeral in the range [1, 3999].
  *
  */
-
-public class RomanToInteger {
-
-    public static void main(String[] args) {
-        System.out.println(romanToInt("III")); // Output: 3
-        System.out.println(romanToInt("IV")); // Output: 4
-        System.out.println(romanToInt("IX")); // Output: 9
-        System.out.println(romanToInt("LVIII")); // Output: 58
-        System.out.println(romanToInt("MCMXCIV")); // Output: 1994
-    }
-
-    public static int romanToInt(String s){
-        Map<Character, Integer> romanMap = new HashMap<>();
-        romanMap.put('I', 1);
-        romanMap.put('V', 5);
-        romanMap.put('X', 10);
-        romanMap.put('L', 50);
-        romanMap.put('C', 100);
-        romanMap.put('D', 500);
-        romanMap.put('M', 1000);
-
-        char[] chars = s.toCharArray();
-        int result = 0;
-        int left, right;
-        for(left=0, right=1; right<chars.length; left++, right++){
-            if(romanMap.get(chars[left])>=romanMap.get(chars[right])){
-                result += romanMap.get(chars[left]);
-            } else {
-                result -= romanMap.get(chars[left]);
-            }
-        }
-        return result+romanMap.get(chars[left]);
-    }
-
-}
