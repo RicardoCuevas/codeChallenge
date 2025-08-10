@@ -1,1 +1,1 @@
-# Mi primer proyecto Java
+# Code challenge exercises
