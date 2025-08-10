@@ -15,9 +15,9 @@ public class TwoSum {
             int numberToFind = target - nums[i];
             if(map.containsKey(numberToFind)){
                 return new int[] {map.get(numberToFind), i};
-            } else {
-                map.put(nums[i], i);
             }
+            map.put(nums[i], i);
+
         }
         return new int[] {}; // Return an empty array if no solution is found
     }
