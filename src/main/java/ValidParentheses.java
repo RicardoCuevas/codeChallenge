@@ -3,8 +3,19 @@ import java.util.Stack;
 //https://leetcode.com/problems/valid-parentheses/description/
 public class ValidParentheses {
     public static void main(String[] args) {
-        String s = "([)]";
-        System.out.println(isValid(s));
+        String s1 = "([)]";
+        String s2 = "()";
+        String s3 = "()[]{}";
+        String s4 = "(]";
+        System.out.println(isValid(s1));
+        System.out.println(isValid1(s1));
+        System.out.println(isValid(s2));
+        System.out.println(isValid1(s2));
+        System.out.println(isValid(s3));
+        System.out.println(isValid1(s3));
+        System.out.println(isValid(s4));
+        System.out.println(isValid1(s4));
+
     }
 
     public static boolean isValid(String s){
@@ -21,9 +32,32 @@ public class ValidParentheses {
                 stack.push(']');
             }
             else {
-                if(stack.isEmpty() && stack.pop()!=c){
+                if(stack.isEmpty() || stack.pop()!=c){
                     return false;
                 }
+            }
+        }
+        return stack.isEmpty();
+    }
+
+    public static boolean isValid1(String s){
+        Stack<Character> stack = new Stack<>();
+        for(int i=0; i<s.length(); i++){
+            char car = s.charAt(i);
+            if(car=='(' || car=='[' || car=='{'){
+                stack.push(car);
+            }
+            else if(!stack.isEmpty() && car==')' && stack.peek()=='('){
+                stack.pop();
+            }
+            else if(!stack.isEmpty() && car==']' && stack.peek()=='['){
+                stack.pop();
+            }
+            else if(!stack.isEmpty() && car=='}' && stack.peek()=='{'){
+                stack.pop();
+            }
+            else {
+                return false;
             }
         }
         return stack.isEmpty();
