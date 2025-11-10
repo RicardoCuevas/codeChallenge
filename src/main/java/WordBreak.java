@@ -5,7 +5,7 @@ import java.util.*;
 
 public class WordBreak {
     public static void main(String[] args) {
-
+        System.out.println("Word Break Problem Tests:");
         String s1 = "leetcode";
         List<String> wordDict1 = List.of("leet","code");
         String s2 = "applepenapple";
